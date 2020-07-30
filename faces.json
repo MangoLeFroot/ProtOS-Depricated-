@@ -1,0 +1,38 @@
+    [
+        {
+            "name": "default",
+            "path": "./faces/default.bmp",
+            "color": [
+                255,
+                229,
+                0
+            ]
+        },
+        {
+            "name": "froot",
+            "path": "./faces/froot.bmp",
+            "color": [
+                255,
+                229,
+                0
+            ]
+        },
+        {
+            "name": "mango",
+            "path": "./faces/mango.bmp",
+            "color": [
+                255,
+                255,
+                255
+            ]
+        },        
+        {
+            "name": "test",
+            "path": "./faces/test.bmp",
+            "color": [
+                0,
+                0,
+                0
+            ]
+        }
+    ]
