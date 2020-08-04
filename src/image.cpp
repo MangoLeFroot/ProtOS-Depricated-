@@ -59,17 +59,18 @@ void Image::LoadBMP(const std::string& path) {
     fread(&bmfh, sizeof(BITMAPFILEHEADER), 1, file);
     fread(&bmih, sizeof(BITMAPINFOHEADER), 1, file);
 
-    //if(strcmp(reinterpret_cast<char*>(&bmfh.bfType), "BM")) {
-    //    fprintf(stderr, "Bitmap (%s) in invalid format.\n", std::to_string(bmfh.bfType).c_str());
-    //    fclose(file);
-    //    return;
-    //}
+    if(reinterpret_cast<char*>(&bmfh.bfType)[0] != 'B' ||
+       reinterpret_cast<char*>(&bmfh.bfType)[1] != 'M') {
+        fprintf(stderr, "Bitmap (%s) in invalid format.\n", path.c_str());
+        fclose(file);
+        return;
+    }
 
     _width = bmih.biWidth;
     _height = abs(bmih.biHeight);
 
-    // Set to position 0x8A in file to start reading color
-    //fseek(file, 0x8A, SEEK_SET);
+    // Set to position data offset for image
+    fseek(file, bmfh.bfOffBits, SEEK_SET);
 
     rgb_matrix::Color* pixels = new rgb_matrix::Color[_width * _height];
 
