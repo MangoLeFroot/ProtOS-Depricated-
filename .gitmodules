@@ -1,0 +1,7 @@
+[submodule "libpng-apng"]
+	path = deps/libpng-apng
+	url = https://github.com/randy408/libpng-apng.git
+	branch = v.1.6.37+apng
+[submodule "deps/rpi-rgb-led-matrix"]
+	path = deps/rpi-rgb-led-matrix
+	url = https://github.com/hzeller/rpi-rgb-led-matrix.git
