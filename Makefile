@@ -12,7 +12,7 @@ PCH_SRC := pch.h
 SRCS := $(shell find $(SRC_DIR) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 
-LIBRARIES	:= -lrgbmatrix -lpthread
+LIBRARIES	:= -lrgbmatrix -lgif -lpthread
 EXECUTABLE	:= prot_os
 
 all: $(BUILD_DIR)/$(EXECUTABLE)

@@ -1,6 +1,8 @@
 #include "image.h"
 #include "image_headers.h"
 
+#include <gif_lib.h>
+
 Image::Image() {
 
 }
@@ -102,5 +104,26 @@ void Image::LoadBMP(const std::string& path) {
 }
 
 void Image::LoadGIF(const std::string& path) {
-    
+    GifFileType *file;  
+    GifRowType  *buffer;
+
+    if((file = DGifOpenFileName(path.c_str(), NULL)) == nullptr) {
+        fprintf(stderr, "Unable to load gif (%s).", path.c_str());
+        return;
+    }
+
+    if(file->SHeight == 0 || file->SWidth == 0) {
+        fprintf(stderr, "Invalid size gif (%s).", path.c_str());
+        return;
+    }
+
+        /* 
+        * Allocate the screen as vector of column of rows. Note this
+        * screen is device independent - it's the screen defined by the
+        * GIF file parameters.
+        */
+        if((buffer = (GifRowType*)malloc(file->SHeight * sizeof(GifRowType))) == nullptr) {
+        fprintf(stderr, "Failed to allocate memory required, aborted.");
+        return; 
+    }
 }
